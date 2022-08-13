@@ -3,23 +3,19 @@ import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import {comments, news, users} from "../fakeDb/fakeDb";
 import {CommentsService} from "../comments/comments.service";
+import {News} from "./entities/news.entity";
 
 @Injectable()
 export class NewsService {
   constructor(private readonly commentsService: CommentsService) {}
 
   create(createNewsDto: CreateNewsDto) {
-    const {text,title}=createNewsDto;
-    const validate={text, title}
-    Object.entries(validate).forEach(el=>{
-      if(!el[1]) throw new HttpException('Empty '+ el[0], HttpStatus.BAD_REQUEST);
-      if(typeof el[1] !=='string') throw new HttpException(el[0]+'type error', HttpStatus.BAD_REQUEST);
-      if(el[1].length<3 ) throw new HttpException('too short '+el[0], HttpStatus.BAD_REQUEST);
-    })
+    const {text,title, thumbnail}=createNewsDto;
+
+
     const new_id=news?.length?Math.max(...news.map(el=>el.id))+1:0
 
-    //user[0] instead of auth user
-    news.push({text,title, date:new Date().toISOString(), id:new_id, user_id:users[0].id})
+    news.push({text,title, date:new Date().toISOString(), id:new_id, user_id:users[0].id, thumbnail})
 
     return 'This action adds a new news';
   }
