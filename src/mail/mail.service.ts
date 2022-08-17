@@ -10,9 +10,11 @@ export class MailService {
     console.log('Отправляется тестовое письмо');
     try {
       return await this.mailerService.sendMail({
-        to: 'spiehdid6@mail.ru',
+        to: 'spiehssasdid6@mail.ru',
         subject: 'Первое тестовое письмо',
-        template: './test',
+        text: 'welcome', // plaintext body
+        html: '<b>welcome</b>',
+        // template: './test',
       });
     } catch (error) {
       console.log(error);

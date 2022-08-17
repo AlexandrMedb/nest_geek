@@ -3,16 +3,17 @@ import { MailService } from './mail.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { join } from 'path';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { password } from './password';
 import { MailController } from './mail.controller';
+import {password} from "../../private/password";
+
 
 @Global()
 @Module({
   imports: [
     MailerModule.forRoot({
-      transport: `smtps://spiehdid:${password}@smtp.mail.ru`,
+      transport: `smtps://torasov.alexandrg@mail.ru:${password}@smtp.mail.com`,
       defaults: {
-        from: '"NestJS робот" <spiehdid@mail.ru>',
+        from: '"NestJS робот" <torasov.alexandr@mail.ru>',
       },
       template: {
         dir: join(__dirname, 'templates'),
