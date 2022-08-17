@@ -7,9 +7,10 @@ import { CommentsToCommentsModule } from './comments-to-comments/comments-to-com
 import { UserModule } from './user/user.module';
 import {APP_GUARD} from "@nestjs/core";
 import {RoleGuard} from "./guards/role/role.guard";
+import {MailModule} from "./mail/mail.module";
 
 @Module({
-  imports: [NewsModule, CommentsModule, CommentsToCommentsModule, UserModule],
+  imports: [NewsModule, CommentsModule, CommentsToCommentsModule, UserModule, MailModule],
   controllers: [AppController],
   providers: [AppService, {provide:APP_GUARD, useClass:RoleGuard}],
 })

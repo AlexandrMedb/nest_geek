@@ -27,7 +27,7 @@ const roleSettings: accessRights = {
 
 export const Role = (right: Rights, crud: RightsCRUD) => {
     //todo get user role
-    const userRole = users[1].role
+    const userRole = users[0].role
     if(userRole=='admin')  return SetMetadata('roleAccess', 'enable')
 
     try{

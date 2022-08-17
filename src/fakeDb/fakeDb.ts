@@ -18,7 +18,8 @@ export const news = Array.from({length: fakeDataLength}, (v, k): News => ({
     user_id: k,
     title: `news` + k,
     date: '2022-08-07T07:19:05.326Z',
-    text: `text${k}`
+    text: `text${k}`,
+    thumbnail:''
 }))
 
 
