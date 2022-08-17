@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Render} from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
@@ -36,8 +36,10 @@ export class NewsController {
 
   @Get()
   @Role('news', 'read')
+  @Render('news-list')
   findAll() {
-    return this.newsService.findAll();
+    return { news: this.newsService.findAll() };
+    // return this.newsService.findAll();
   }
 
   @Get(':id')
